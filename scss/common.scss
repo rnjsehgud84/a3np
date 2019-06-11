@@ -1,0 +1,63 @@
+* {
+  word-break: break-all;
+  word-wrap: break-word;
+  box-sizing: border-box;
+}
+
+// ::-webkit-scrollbar {
+//   display: none !important;
+// }
+
+html {
+  height: 100%;
+}
+
+body {
+  @extend html;
+  font: 14px/1.6 "Noto Sans KR";
+
+  a {
+    display: inline-block;
+    text-decoration: none;
+    color: #282828;
+    cursor: pointer;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+    vertical-align: middle;
+  }
+
+  button {
+    border: none;
+    background: none;
+    margin: 0;
+    padding: 0;
+    cursor: pointer;
+  }
+
+  textarea {
+    resize: none;
+    overflow: auto;
+  }
+}
+
+#skip {
+  font-size: 0;
+  width: 0;
+  height: 0;
+  line-height: 0;
+  position: absolute;
+  left: -9999px;
+}
+
+.skip {
+  @extend #skip;
+}
+
+.flexCenter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

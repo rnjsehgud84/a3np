@@ -1,0 +1,656 @@
+@import "./responsive.scss";
+
+$pointColor1: #03d0b3;
+$pointColor2: #183d84;
+
+@mixin flexCenter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.box {
+  position: fixed;
+  right: 0%;
+  top: 15px;
+  width: 1rem;
+  height: 10px;
+  transform: rotate(45deg);
+  background: $pointColor1;
+  mix-blend-mode: difference;
+}
+
+.container section {
+  @include flexCenter;
+  width: 100%;
+  position: relative;
+  color: #282828;
+  min-height: 90vh;
+
+  &:first-child {
+    color: #fff;
+    margin-top: 10vh;
+  }
+
+  &:nth-child(n + 2) {
+    border-top: 1px solid #282828;
+  }
+
+  &:nth-child(odd) {
+    background: #282828;
+    color: #fff;
+
+    .btnWrap button:hover,
+    .boardUl dt>div i,
+    .content .boardBottom .boardBtnWrap button,
+    .content .boardBottom .pageCtl .pageNumber li.on button,
+    .content .boardTop button,
+    .content .boardTop .left em {
+      background: $pointColor1 !important;
+    }
+
+    .content .boardBottom .pageCtl button {
+      color: #fff;
+    }
+
+    .boardUl dt:hover strong {
+      color: $pointColor1;
+    }
+
+    .boardUl dd,
+    .boardUl {
+      border-color: $pointColor1;
+    }
+
+    .content .boardTop input[type="text"]::placeholder,
+    .content .boardTop input[type="text"],
+    select option,
+    select {
+      background: #282828;
+      color: #fff;
+    }
+  }
+}
+
+.sliderUl li {
+  width: 100%;
+  height: 90vh;
+  position: absolute;
+  left: 0;
+  top: 0;
+  @include flexCenter;
+  background-size: cover !important;
+  opacity: 0;
+
+  &:first-child {
+    background: url("../images/bg1.jpg") no-repeat center center;
+    opacity: 1;
+  }
+
+  &:nth-child(2) {
+    background: url("../images/bg2.jpg") no-repeat center center;
+  }
+
+  &:nth-child(3) {
+    background: url("../images/bg3.jpg") no-repeat center center;
+  }
+
+  .contWrap {
+    width: 100%;
+    height: 90vh;
+    font-size: 2rem;
+    background: rgba(30, 30, 30, 0.6);
+    @include flexCenter;
+
+    .cont {
+      @include flexCenter;
+      flex-direction: column;
+      border: 10px solid $pointColor1;
+      padding: 3rem;
+      background: rgba(30, 30, 30, 0.6);
+
+      @include respond-to(mobile) {
+        width: 90%;
+      }
+
+      @include respond-to(tablet) {
+        width: 90%;
+      }
+
+      @include respond-to(pc) {
+        width: 60%;
+      }
+    }
+
+    strong {
+      font-size: 2.8rem;
+      font-weight: 900;
+      @include flexCenter();
+
+      span {
+        font-size: 1.8rem;
+        margin-left: 1rem;
+        color: rgba(255, 255, 255, 0.8);
+      }
+    }
+
+    p {
+      font-size: 1.4rem;
+      width: 100%;
+      margin-top: 2rem;
+      font-weight: 300;
+      text-align: justify;
+
+      em {
+        font-weight: 700;
+        color: $pointColor1;
+      }
+    }
+  }
+}
+
+.contents {
+  flex-direction: column;
+
+  @include respond-to(mobile) {
+    padding: 2rem;
+  }
+
+  @include respond-to(tablet) {
+    padding: 2rem;
+  }
+
+  @include respond-to(pc) {
+    padding: 4rem;
+  }
+
+
+  h2 {
+    @include flexCenter();
+    flex-direction: column;
+    margin-bottom: 4rem;
+
+    span {
+      &:first-child {
+        font-size: 2.4rem;
+        font-weight: 700;
+      }
+
+      &:last-child {
+        font-size: 1.2rem;
+      }
+    }
+  }
+
+  .content {
+    @include respond-to(mobile) {
+      width: 100%;
+    }
+
+    @include respond-to(tablet) {
+      width: 100%;
+    }
+
+    @include respond-to(pc) {
+      width: 60%;
+    }
+
+    font-size: 1rem;
+
+    .boardTop {
+      .left {
+        margin-right: auto;
+
+        span+span {
+          &::before {
+            content: "/";
+            margin: 0 1rem;
+          }
+        }
+
+        em {
+          background: $pointColor2;
+          color: #fff;
+          padding: 0.2rem 0.8rem;
+          margin: 0 10px;
+        }
+      }
+
+      @include respond-to(mobile) {}
+
+      @include respond-to(tablet) {}
+
+      @include respond-to(pc) {}
+
+      @include flexCenter();
+
+      select {
+        border: 1px solid #ccc;
+        height: 40px;
+        padding: 0 10px;
+      }
+
+      input[type="text"] {
+        flex: 1;
+        margin: 0 5px;
+        font-size: 1rem;
+        height: 40px;
+        padding: 0 10px;
+        border: 1px solid #ccc;
+      }
+
+      button {
+        border: 1px solid $pointColor2;
+        height: 40px;
+        padding: 0 20px;
+        background: $pointColor2;
+        color: #fff;
+      }
+    }
+
+    .boardBottom {
+      @include respond-to(mobile) {
+        width: 100%;
+      }
+
+      @include respond-to(tablet) {
+        width: 100%;
+      }
+
+      @include respond-to(pc) {
+        width: 60%;
+        margin: 0 auto;
+      }
+
+      .pageCtl {
+        @include flexCenter();
+
+        button {
+          border: 1px solid #ccc;
+          padding: 0.5rem 1rem;
+        }
+
+        button:hover {
+          text-decoration: underline;
+        }
+
+        button+button {
+          margin-left: 5px;
+        }
+
+        .pageNumber {
+          @include flexCenter();
+          margin: 0 5px;
+
+          li.on button {
+            background: $pointColor2;
+            color: #fff;
+          }
+
+          li+li {
+            margin-left: 5px;
+          }
+        }
+      }
+
+      .boardBtnWrap {
+        margin-top: 2rem;
+        @include flexCenter();
+
+        button {
+          background: $pointColor2;
+          color: #fff;
+          padding: 1rem 2rem;
+
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+  }
+}
+
+.requestWrap {
+  padding: 1rem;
+  background: #fff;
+  margin: 0 auto;
+  width: 100%;
+
+  .btnWrap {
+    margin-bottom: 0;
+  }
+}
+
+.boardUl {
+  margin: 1rem auto;
+  border-top: 4px solid $pointColor2;
+
+  dt {
+    border-bottom: 1px solid #ccc;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    cursor: pointer;
+
+    &:hover strong {
+      text-decoration: underline;
+      color: $pointColor2;
+    }
+
+    >div {
+      padding: 0 1rem;
+
+      i {
+        display: inline-block;
+        width: 40px;
+        height: 40px;
+        background: $pointColor2;
+      }
+
+      strong {
+        font-size: 1.2rem;
+        font-weight: 500;
+      }
+
+      span {
+        font-size: 0.8rem;
+        font-weight: 300;
+
+        &:not(:first-child)::before {
+          content: "";
+          display: inline-block;
+          width: 1px;
+          height: 10px;
+          background: #282828;
+          margin: 0 1rem;
+        }
+      }
+    }
+  }
+
+  dd {
+    border-bottom: 1px solid $pointColor2;
+    padding: 2rem 1rem;
+    display: none;
+
+    .txtWrap {
+      width: 100%;
+
+      pre {
+        white-space: pre-wrap;
+      }
+    }
+
+    .txtWrap+.imgWrap {
+      margin-top: 2rem;
+    }
+  }
+}
+
+.btnWrap {
+  @include flexCenter();
+  margin: 2rem 0;
+
+  button {
+    border: 1px solid #282828;
+    padding: 0.8rem 2.4rem;
+    background: #fff;
+
+    &:hover {
+      background: $pointColor2;
+      color: #fff;
+      text-decoration: underline;
+    }
+  }
+
+  button+button {
+    margin-left: 1rem;
+  }
+}
+
+.imgWrap {
+  margin-bottom: 2rem;
+  @include flexCenter();
+
+  img {
+    max-width: 100%;
+  }
+}
+
+#menu1 {
+  .content {
+    font-size: 1rem;
+
+    div {
+      @include flexCenter();
+      flex-direction: column;
+
+      strong {
+        font-size: 1.8rem;
+        font-weight: 700;
+      }
+
+      span {
+        font-size: 1.2rem;
+      }
+    }
+  }
+}
+
+#menu2 {
+  .content {
+    width: 100%;
+
+    ul {
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      flex-wrap: wrap;
+
+      li {
+        @include flexCenter();
+        flex-wrap: wrap;
+        width: 50%;
+        padding: 0 4rem;
+
+        strong {
+          font-size: 2rem;
+          font-weight: 700;
+        }
+
+        span {
+          font-size: 1rem;
+          margin-top: 1rem;
+        }
+
+        &:nth-child(2) {
+          margin-top: 0;
+        }
+      }
+
+      li+li {
+        margin-top: 4rem;
+      }
+    }
+  }
+}
+
+#menu3 .content {
+  width: 100%;
+}
+
+.portfolioUl {
+  @include flexCenter();
+  flex-wrap: wrap;
+
+  li {
+    border: 1px solid #ccc;
+    width: 300px;
+    margin: 5px;
+
+    div {
+      @include flexCenter();
+      flex-direction: column;
+
+      p {
+        text-align: center;
+
+        &:first-child {
+          height: 300px;
+          padding: 1rem;
+          @include flexCenter();
+        }
+
+        &:last-child {
+          padding: 1rem;
+          background: $pointColor2;
+          color: #fff;
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+
+#menu4 {
+  .content {
+    @include flexCenter();
+    margin-top: 4rem;
+
+    div {
+      text-align: center;
+
+      >strong {
+        font-size: 4rem;
+        font-weight: 700;
+      }
+
+      ul {
+        margin-top: 1rem;
+
+        li {
+          font-size: 1.4rem;
+        }
+
+        span {
+          font-size: 1rem;
+        }
+      }
+    }
+
+    div+div {
+      margin-left: 4rem;
+    }
+  }
+}
+
+.layerWrap {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 99;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(40, 40, 40, 0.8);
+  @include flexCenter();
+  display: none;
+
+  .layerCont {
+    width: 60%;
+    max-height: 80%;
+    overflow: auto;
+    background: #fff;
+    padding: 2rem;
+    position: relative;
+
+    h3 {
+      font-size: 2rem;
+      font-weight: 500;
+      border-bottom: 2px solid $pointColor2;
+      margin-bottom: 1rem;
+    }
+
+    .layerTxt {
+      .boardUl_typeH li.hidden {
+        display: none;
+
+        div {
+          @include flexCenter();
+          width: 100%;
+        }
+      }
+
+      .btnWrap {
+        margin-bottom: 0;
+      }
+    }
+
+    .layerBtn_x {
+      position: absolute;
+      right: 0;
+      top: 0;
+
+      button {
+        background: $pointColor2;
+        color: #fff;
+        padding: 0.8rem 1.6rem;
+        border: 2px solid #fff;
+        transition: 0.5s;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}
+
+.boardUl_typeH.inner.black {
+  li:first-child {
+    border-top: 4px solid $pointColor1;
+  }
+}
+
+.boardUl_typeH li {
+  border-bottom: 1px solid #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  background: #fff;
+  color: #282828;
+
+  label {
+    width: 20%;
+    position: relative;
+    margin-right: 1rem;
+    padding: 1rem 0;
+    @include flexCenter();
+
+    &::after {
+      content: "";
+      display: inline-block;
+      width: 1px;
+      height: 10px;
+      background: #ccc;
+      position: absolute;
+      right: 0;
+      top: 60%;
+      transform: translateY(-60%);
+    }
+  }
+
+  label+textarea,
+  label+input[type="password"],
+  label+input[type="text"] {
+    flex: 1;
+    padding: 1rem;
+    border: none;
+    line-height: 1.6;
+  }
+
+  input[type="checkbox"] {
+    margin-right: 1rem;
+  }
+}

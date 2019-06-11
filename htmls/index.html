@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>canvas</title>
+  <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:100,300,400,500,700,900&display=swap&subset=korean"
+    rel="stylesheet" />
+  <style>
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      font-family: 'Noto Sans KR', sans-serif;
+    }
+
+    p {
+      margin: 0;
+      padding: 0;
+    }
+
+    .wrap {
+      position: fixed;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+
+    .boxWrap {
+      border: 1px solid red;
+      color: #fff;
+      flex-direction: column;
+      border: 4px solid #fae100;
+      text-align: center;
+      font-size: 2rem;
+      padding: 4rem;
+    }
+
+    .boxWrap strong {
+      font-size: 3rem;
+    }
+
+    h2 {
+      color: #fff;
+      font-size: 2rem;
+      margin: 0;
+    }
+
+    .loginWrap {
+      color: #fff;
+      margin-top: 20px;
+      background: rgba(30, 30, 30, 0.5);
+      padding: 40px;
+      border: 4px solid #fae100;
+    }
+
+    .loginWrap li+li {
+      margin-top: 10px;
+    }
+
+    .loginWrap strong {
+      display: inline-block;
+      width: 100px;
+      font-weight: 300;
+    }
+
+    .loginWrap input {
+      padding: 10px;
+      border: none;
+      font-family: 'Noto Sans KR', sans-serif;
+    }
+
+    .btnWrap {
+      background: #fae100;
+      text-align: center;
+      margin-top: 40px;
+    }
+
+    .btnWrap button {
+      width: 100%;
+      padding: 10px;
+      font-weight: 700;
+      font-size: 1rem;
+      background: none;
+      border: none;
+      color: #282828;
+      cursor: pointer;
+
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <!-- <div class="boxWrap">
+      <strong>겨울밤에 눈이 내리는 풍경</strong>
+      <p>a snowy landscape on a winter night</p>
+    </div> -->
+    <h2>로그인</h2>
+    <div class="loginWrap">
+      <form action="" method="post">
+        <ul>
+          <li>
+            <strong>아이디</strong>
+            <span><input type="text"></span>
+          </li>
+          <li>
+            <strong>비밀번호</strong>
+            <span><input type="password"></span>
+          </li>
+        </ul>
+        <div class="btnWrap">
+          <button type="submit">로그인</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <canvas></canvas>
+  <script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script>
+    var canvas = document.querySelector('canvas');
+    var ctx = canvas.getContext('2d');
+
+    var ctxW = (canvas.width = window.innerWidth * 2);
+    var ctxH = (canvas.height = window.innerHeight * 2);
+
+    var bg = new Image();
+    bg.src = '../images/bg.jpg';
+
+    // bg.width = window.innerWidth;
+    // bg.heght = window.innerHeight;
+
+    function resizeFunc() {
+      addEventListener('resize', function () {
+        ctxW = canvas.width = window.innerWidth * 2;
+        ctxH = canvas.height = window.innerHeight * 2;
+      });
+    }
+
+    var snowflakes = [];
+    var totalCount = 10;
+    function addSnowflake() {
+      // if (snowflakes.length >= totalCount) {
+      //   return;
+      // }
+
+      var x = Math.floor(Math.random() * ctxW);
+      var y = 0;
+      var size = Math.floor(Math.random() * 3) + 1;
+
+      snowflakes.push({ x: x, y: y, size: size });
+    }
+
+    function snow() {
+      addSnowflake();
+
+      ctx.fillStyle = 'rgba(255,255,255,0.75)';
+      for (var i in snowflakes) {
+        ctx.beginPath();
+        var tx = (snowflakes[i].x += Math.random() * -1);
+        var ty = (snowflakes[i].y += snowflakes[i].size * 0.5);
+        ctx.arc(tx, ty, snowflakes[i].size, 0, Math.PI * 2);
+        ctx.fill();
+
+        if (snowflakes[i].y > ctxH) {
+          snowflakes.splice(i, 1);
+        }
+      }
+    }
+
+    function displayCount() {
+      ctx.fillstyle = 'white';
+      ctx.font = 'bold 20px Arial, sans-serif';
+      ctx.fillText(snowflakes.length, 20, 40);
+    }
+
+    function animate() {
+      resizeFunc();
+      ctx.save();
+      ctx.clearRect(0, 0, ctxW, ctxH);
+
+      var imgWidth = window.innerWidth;
+      var imgHeight = window.innerHeight;
+
+      if (imgWidth <= 1920) {
+        imgWidth = 1920;
+      }
+      if (imgHeight <= 1280) {
+        imgHeight = 1280;
+      }
+
+      ctx.drawImage(bg, 0, 0, imgWidth, imgHeight);
+      snow();
+      displayCount();
+      ctx.restore();
+
+      requestAnimationFrame(animate);
+    }
+    animate();
+  </script>
+</body>
+
+</html>

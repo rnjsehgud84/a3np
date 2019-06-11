@@ -1,0 +1,30 @@
+$break-mobile: 767px;
+$break-pc: 1400px;
+
+@mixin respond-to($media) {
+  @if $media==mobile {
+    @media only screen and (max-width: $break-mobile) {
+      @content;
+    }
+  }
+
+  @else if $media==tablet {
+    @media only screen and (min-width: $break-mobile + 1) and (max-width: $break-pc - 1) {
+      @content;
+    }
+  }
+
+  @else if $media==pc {
+    @media only screen and (min-width: $break-pc) {
+      @content;
+    }
+  }
+}
+
+.sample {
+  @include respond-to(mobile) {}
+
+  @include respond-to(tablet) {}
+
+  @include respond-to(pc) {}
+}

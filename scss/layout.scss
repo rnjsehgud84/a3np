@@ -1,0 +1,146 @@
+@import './responsive.scss';
+$pointColor: #03d0b3;
+
+@mixin flexCenter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin initLayout {
+  @include flexCenter;
+  height: 10vh;
+  text-transform: uppercase;
+  background: #1e1e1e;
+  color: #fff;
+}
+
+.wrapper {
+  width: 100%;
+  height: 100%;
+  background: #1e1e1e;
+  color: #fff;
+}
+
+.header {
+  @include initLayout;
+  padding: 0 2rem;
+  width: 100%;
+  font-size: 1rem;
+  border-bottom: 2px dashed #fff;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 9;
+
+  h1 {
+    margin-right: auto;
+    font-size: 2rem;
+    font-weight: 900;
+
+    a.on {
+      color: $pointColor;
+    }
+  }
+
+  a {
+    color: #fff;
+    @include flexCenter;
+    flex-direction: column;
+    cursor: pointer;
+
+    span {
+      &:first-child {
+        font-size: 1.2rem;
+      }
+
+      &:last-child {
+        font-size: 0.8rem;
+      }
+    }
+
+
+  }
+
+  .navBtn {
+    button {
+      color: #fff;
+    }
+
+    @include respond-to(mobile) {
+      display: block;
+    }
+
+    @include respond-to(tablet) {
+      display: block;
+    }
+
+    @include respond-to(pc) {
+      display: none;
+    }
+  }
+
+  .menuUl {
+    @include respond-to(mobile) {
+      display: none;
+    }
+
+    @include respond-to(tablet) {
+      display: none;
+    }
+
+    @include respond-to(pc) {
+      display: block;
+      @include flexCenter;
+
+      li {
+        @include flexCenter()
+      }
+
+      li.on a {
+        color: $pointColor;
+      }
+
+      li+li {
+        margin-left: 1rem;
+
+        &::before {
+          content: '';
+          display: inline-block;
+          width: 1px;
+          height: 10px;
+          background: #fff;
+          margin-right: 1rem;
+          opacity: 0.5;
+        }
+      }
+
+      a:hover {
+        text-decoration: underline;
+      }
+    }
+
+
+  }
+
+  .logWrap {
+    margin-left: auto;
+
+    span+span {
+      margin-left: 2rem;
+    }
+  }
+}
+
+.container {
+  @include flexCenter;
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
+  flex-direction: column;
+}
+
+.footer {
+  @include initLayout;
+  border-top: 2px dashed #fff;
+}
